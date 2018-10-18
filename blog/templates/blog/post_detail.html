@@ -7,8 +7,16 @@
                 {{ post.published_date }}
             </div>
         {% endif %}
-        <h1>{{ post.title }}</h1>
-        <p>{{ post.text|linebreaksbr }}</p>
+        <h1>имя - {{ post.name }}</h1>
+        <p>фамилия - {{ post.surname|linebreaksbr }}</p>
+        <p>отчество - {{ post.patronymic|linebreaksbr }}</p>
+        <p>дата рождения - {{ post.DateofBirth|linebreaksbr }}</p>
+        <p>Пол - {{ post.sex|linebreaksbr }}</p>
+        <p>{{ post.img }}</p>
+        <p>Цвет волос - {{ post.hairСolor }}</p>
+        <p>Вес - {{ post.weight }}</p>
+        <p>Любимое животное - {{ post.favoriteAnimal }}</p>
+        <p>Наличие животного - {{ post.haveAnimal }}</p>
         {% if user.is_authenticated %}
           <a class="btn btn-default" href="{% url 'post_edit' pk=post.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
         {% endif %}

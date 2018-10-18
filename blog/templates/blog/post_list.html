@@ -6,8 +6,16 @@
             <div class="date">
                 {{ post.published_date }}
             </div>
-            <h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
-            <p>{{ post.text|linebreaksbr }}</p>
+            <h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.name }}</a></h1>
+            <p>фамилия - {{ post.surname|linebreaksbr }}</p>
+            <p>отчество - {{ post.patronymic|linebreaksbr }}</p>
+            <p>дата рождения - {{ post.DateofBirth|linebreaksbr }}</p>
+            <p>Пол - {{ post.sex|linebreaksbr }}</p>
+            <p>{{ post.img }}</p>
+            <p>Цвет волос - {{ post.hairСolor }}</p>
+            <p>Вес - {{ post.weight }}</p>
+            <p>Любимое животное - {{ post.favoriteAnimal }}</p>
+            <p>Наличие животного - {{ post.haveAnimal }}</p>
         </div>
     {% endfor %}
 {% endblock %}
