@@ -37,11 +37,11 @@ class Post(models.Model):
     patronymic = models.CharField(max_length=200, null=True)
     DateofBirth = models.DateField(null=True)
     sex = models.CharField(max_length=1, choices=GENDER_CHOICES, null=True)
-    img = models.ImageField(upload_to = 'blog/pic_folder/', default = 'blog/pic_folder/15709.jpg')
+    img = models.ImageField(null=True, blank=True, upload_to="")
     hairСolor = models.CharField(max_length=6, choices=HAIR_CHOICES, null=True)
     weight = models.IntegerField(null=True)
     favoriteAnimal = models.CharField(max_length=100,choices=FAVORITE_ANIMAL, null=True)
-    haveAnimal = models.CharField(max_length=1, choices=HAVE_ANIMAL, null=True)
+    haveAnimal = models.BooleanField(default = False)
 
     created_date = models.DateTimeField(
             default=timezone.now)

@@ -7,24 +7,6 @@ from django.shortcuts import redirect
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
-"""
-def listing(request):
-    post_list = Post.objects.all()
-    paginator = Paginator(post_list, 10) # Show 25 contacts per page
-
-    page = request.GET.get('page')
-    try:
-        Post = paginator.page(page)
-    except PageNotAnInteger:
-        # If page is not an integer, deliver first page.
-        Post = paginator.page(1)
-    except EmptyPage:
-        # If page is out of range (e.g. 9999), deliver last page of results.
-        Post = paginator.page(paginator.num_pages)
-
-    return render_to_response('blog/list.html', {"Post": Post})
-"""
-
 
 def post_list(request):
     posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('-published_date')
@@ -37,7 +19,7 @@ def post_detail(request, pk):
 
 def post_new(request):
     if request.method == "POST":
-        form = PostForm(request.POST)
+        form = PostForm(request.POST, request.FILES)
         if form.is_valid():
             post = form.save(commit=False)
             post.author = request.user
@@ -51,7 +33,7 @@ def post_new(request):
 def post_edit(request, pk):
     post = get_object_or_404(Post, pk=pk)
     if request.method == "POST":
-        form = PostForm(request.POST, instance=post)
+        form = PostForm(request.POST, request.FILES, instance=post)
         if form.is_valid():
             post = form.save(commit=False)
             post.author = request.user
@@ -65,7 +47,7 @@ def post_edit(request, pk):
 def post_edit2(request, pk):
     post = get_object_or_404(Post, pk=pk)
     if request.method == "POST":
-        form = PostForm2(request.POST, instance=post)
+        form = PostForm2(request.POST, request.FILES, instance=post)
         if form.is_valid():
             post = form.save(commit=False)
             post.author = request.user
@@ -79,7 +61,7 @@ def post_edit2(request, pk):
 def post_edit3(request, pk):
     post = get_object_or_404(Post, pk=pk)
     if request.method == "POST":
-        form = PostForm3(request.POST, instance=post)
+        form = PostForm3(request.POST, request.FILES, instance=post)
         if form.is_valid():
             post = form.save(commit=False)
             post.author = request.user
